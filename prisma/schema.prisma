@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model pdns_records {
+  id                Int       @id @default(autoincrement())
+  qname             String
+  rrtype            String    @db.VarChar(10)
+  rdata             String?
+  ttl               Int?
+  rcode             String?   @db.VarChar(20)
+  bailiwick         String?
+  first_seen        DateTime? @default(now()) @db.Timestamptz(6)
+  last_seen         DateTime? @default(now()) @db.Timestamptz(6)
+  observation_count Int?      @default(1)
+
+  @@unique([qname, rrtype, rdata, rcode])
+  @@index([last_seen(sort: Desc)], map: "idx_pdns_last_seen")
+  @@index([qname], map: "idx_pdns_qname")
+  @@index([rdata], map: "idx_pdns_rdata")
+}

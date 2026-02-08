@@ -1,4 +1,5 @@
 import { auth } from "@/auth";
+import prisma from "@/db";
 
 export default async function AdminShowPage() {
   const session = await auth();
@@ -11,5 +12,19 @@ export default async function AdminShowPage() {
     return <div>권한이 없습니다.</div>;
   }
 
-  return <div>Admin Show Page</div>;
+  const records = await prisma.pdns_records.findMany();
+
+  return (
+    <div>
+        <h1>Admin Show Page</h1>
+        <div>
+            {records.map((record) => (
+                <li key={record.id}>
+                    {record.qname} - {record.rrtype} - {record.rdata}
+                </li>
+            ))}
+        </div>
+    </div>
+  );
+  
 }
