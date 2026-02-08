@@ -1,3 +1,14 @@
+## Entra ID 연동
+- 참고: https://hackernoon.com/how-to-configure-microsoft-entra-id-as-a-login-provider-in-your-nextjs-app#aboutCard
+- auth.js: https://authjs.dev/getting-started/providers/microsoft-entra-id
+- 
+
+## 참고
+- heroui: https://www.heroui.com/docs/frameworks/nextjs
+
+
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
